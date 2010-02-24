@@ -1,0 +1,14 @@
+.iframe-wrap
+{
+	margin: 5px 17px 0px 12px;
+}
+
+#llp_frame
+{
+	height:500px;
+	width:99.7%;
+	border: 1px solid rgb(182, 192, 194);
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	background:#fff;
+}
