@@ -25,24 +25,12 @@ Features
 NSM Live Look has many features to enhance your publishing workflow. They include:
 
 * **Publish Form Live Look tab** - View published entry revisions in template context from the CP publish form. Previewing unpublished changes to entries, viewing drafts and revisions requires NSM Publish Plus.
-* **Edit Page Live Look links** - Quick navigation to the live entry from the edit entries table.
-* **Hide default preview box** - Remove the standard ExpressionEngine entry preview.
-
-It's also:
-
 * **Multi-Site Manager compatible** - Independent extension settings for each site
-
-Screenshots (coming soon)
--------------------------
-
-Publish form entry preview
-Edit table links
-Extension settings
 
 Requirements
 ------------
 
-NSM Live Look has been tested on ExpressionEngine 1.6.5+, but may work on earlier versions.
+NSM Live Look has been tested on ExpressionEngine 2.0.1PB1.
 
 Other requirements:
 
