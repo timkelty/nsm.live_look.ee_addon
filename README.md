@@ -1,11 +1,14 @@
 NSM Live Look
 =============
 
-## View entries in template context from the ExpressionEngine control panel publish tab and edit entry table
+Overview
+--------
+
+View entries in template context from the ExpressionEngine control panel publish tab and edit entry table
 
 NSM Live Look is a [Multi-Site Manager][ee_msm] compatible[ ExpressionEngine extension][ee_cp_extensions_manager] that allows you to view the latest published revision of an entry in the ExpressionEngine [control panel][ee_cp].
 
-When enabled, a Live Look tab is added to the CP publish form which displays the entry in a rendered template context. Additionally Live Look links are added to the CP [edit entries table][ee_cp_edit].
+When enabled, a Live Look tab is added to the CP publish form which displays the entry in a rendered template context.
 
 The Problem
 -----------
@@ -27,8 +30,10 @@ NSM Live Look has many features to enhance your publishing workflow. They includ
 * **Publish Form Live Look tab** - View published entry revisions in template context from the CP publish form. Previewing unpublished changes to entries, viewing drafts and revisions requires NSM Publish Plus.
 * **Multi-Site Manager compatible** - Independent extension settings for each site
 
-Requirements
-------------
+Getting started
+---------------
+
+### Requirements
 
 NSM Live Look has been tested on ExpressionEngine 2.0.1PB1.
 
@@ -36,9 +41,6 @@ Other requirements:
 
 * PHP5
 * A modern web browser - Firefox, Safari, Chrome or IE8+
-
-User Guide
-----------
 
 ### Download
 
@@ -59,7 +61,8 @@ The NSM Live Look extension contains an extension and language folder. To instal
 2. Enable NSM Live Look
 3. Configure NSM Live Look in the extension
 
-### Configuration
+Configuration
+-------------
 
 NSM Live Look has the following extension settings which need to be entered separately for each Multi-Site Manager site.
 
