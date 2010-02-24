@@ -4,10 +4,10 @@ NSM Live Look
 Overview
 --------
 
-### Screenshots
+## View entries in template context from the ExpressionEngine control panel publish tab.
 
-![Customised CP header](http://s3.amazonaws.com/ember/mnMurYyE3farLFiffQvkGk8dGxvLvIkq_l.jpg)  
-Customised CP header
+NSM Live Look is a [Multi-Site Manager][ee_msm] compatible[ ExpressionEngine extension][ee_cp_extensions_manager] that allows you to view the latest published revision of an entry in the ExpressionEngine [control panel][ee_cp]. When enabled, a Live Look tab is added to the CP publish form which displays the entry in a rendered template context.
+
 
 Getting started
 -------------
