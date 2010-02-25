@@ -65,7 +65,7 @@ class Nsm_live_look_ext
 	 * @access		public
 	 * @var			string
 	 **/
-	public $versions_xml = 'http://newism.com.au/live-look/versions.xml';
+	public $versions_xml = 'http://github.com/newism/nsm.live_look.ee_addon/raw/master/versions.xml';
 	
 	/**
 	 * Defines whether the extension has user-configurable settings.  EE use.
