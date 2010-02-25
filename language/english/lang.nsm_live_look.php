@@ -40,6 +40,8 @@ $lang = array(
 												</ul>",	
 	
 	'preview_url'							=> 'Preview URL',
+	'shrink_preview'						=> 'Shrink Preview',
+	'enlarge_preview'						=> 'Enlarge Preview',
 	
 	'msg.warning.no_channels'				=> 'No channels exists for this site',
 	'msg.info.entry_unsaved'				=> 'You need to save the entry before you can preview it with Live Look',

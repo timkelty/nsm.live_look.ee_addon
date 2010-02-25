@@ -127,7 +127,7 @@ class Nsm_live_look_upd
 		$this->EE->db->delete('actions');
 
 		$this->EE->db->where('class', self::$module_name . "_mcp");
-		$this->EE->db->delete('actions');		
+		$this->EE->db->delete('actions');	
 
 		return TRUE;
 	}

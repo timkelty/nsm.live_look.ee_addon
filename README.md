@@ -23,15 +23,13 @@ Technical requirements include:
 
 1. [Download][download] the latest version of NSM Live Look
 2. Extract the .zip file to your desktop
-3. Copy `/nsm_live_look/` to your `system/expressionengine/third_party/` directory
+3. Rename the extracted folder to `nsm_live_look` and copy it to your `system/expressionengine/third_party/` directory
 
 ### Activation
 
-1. Open the [Module Mananger][ee2_module_manager]
-2. Install NSM Live Look
-3. Enable the extension, the module and the fieldtype
-4. Open the [Extensions Mananger][ee2_extension_manager]
-5. Configure the extension settings
+1. Open the [Extensions Mananger][ee2_extension_manager]
+2. Enable the NSM Live Look extension
+3. Configure the extension settings
 
 ### Configuration
 
@@ -80,7 +78,7 @@ There are no specific upgrade notes for this version.
 
 ### Change log
 
-#### 1.0.0
+#### 0.1.0
 
 * Initial release with docs
 
@@ -132,3 +130,4 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 [ee2_extension_manager]: http://expressionengine.com/public_beta/docs/cp/add-ons/extension_manager.html
 
 [download]: http://github.com/newism/nsm.live_look.ee_addon/zipball/master
+[newism]: http://www.newism.com.au

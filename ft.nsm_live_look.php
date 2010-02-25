@@ -3,26 +3,25 @@
 /**
  * @package			NSM
  * @subpackage		LiveLook
- * @version			2.0.0
+ * @version			0.1.0
  * @author			Leevi Graham & Anthony Short <leevi@newism.com.au>
- * @link			http://github.com/newism/nsm.better_meta.ee_addon
+ * @link			http://github.com/newism/nsm.live_look.ee-addon
  * @see				http://expressionengine.com/public_beta/docs/development/fieldtypes.html
- * @copyright Copyright (c) 2007-2009 Newism
- * @license Commercial - please see LICENSE file included with this distribution
+ * @copyright 		Copyright (c) 2007-2009 Newism
+ * @license 		Commercial - please see LICENSE file included with this distribution
 *
 */
 class Nsm_live_look_ft extends EE_Fieldtype
 {
 	/**
-	 * Field info - Required
-	 * 
-	 * @access public
+	 * Fieldtype information
+	 *
 	 * @var array
 	 */
 	public $info = array
 	(
-		'name'		=> 'Live Look',
-		'version'	=> '2.0.0'
+		'name'		=> 'NSM Live Look',
+		'version' 	=> '0.1.0'
 	);
 
 	/**
@@ -50,8 +49,15 @@ class Nsm_live_look_ft extends EE_Fieldtype
 	 */
 	public function __construct()
 	{
+		if(!class_exists('Nsm_live_look_ext'))
+		{
+			require_once dirname(__FILE__) . '/ext.nsm_live_look.php';
+		}
+		
+		# Get everything ready for EE using the main addon class
+		$this->field_type = Nsm_live_look_ext::id();
+		
 		parent::EE_Fieldtype();
-		$this->field_type = strtolower(substr(__CLASS__, 0, -3));
 	}
 
 	/**

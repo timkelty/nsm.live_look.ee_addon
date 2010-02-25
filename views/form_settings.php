@@ -5,12 +5,10 @@
  *
  * @package Nsm_multi_language
  * @version 2.0.0
- * @author Leevi Graham & Tony Arnold <http://newism.com.au>
+ * @author Leevi Graham & Anthony Short <http://newism.com.au>
  * @copyright Copyright (c) 2007-2009 Newism
  * @license Commercial - please see LICENSE file included with this distribution
  **/
-
-include_once(PATH_THIRD.'/nsm_live_look/lib/lib.nsm_helpers.php');
 
 ?>
 
@@ -36,40 +34,6 @@ Alert Messages
 		<p><?php print($message); ?></p>
 	</div>
 <?php endif; ?>
-
-<!-- 
-===============================
-Site Preferences
-===============================
--->
-
-<!--
-<h3>Site preferences</h3>
-<div id="site-preferences">
-
-	<table class="mainTable" cellspacing="0">
-		<thead>
-			<tr>
-				<th colspan="2"><?php echo lang("enable_extension_info") ?></thx`>
-			</tr>
-		</thead>
-		<tbody>
-			<tr class="odd">
-				<td width="250"><?php echo lang("enable_extension_label") ?></td>
-				<td>
-					<?php
-						echo newSelectBox(
-							"Nsm_live_look_ext[enabled]",
-							array("1" => "yes", "0" => "no"),
-							$settings["enabled"]
-						);
-					?>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
--->
 
 <!-- 
 ===============================

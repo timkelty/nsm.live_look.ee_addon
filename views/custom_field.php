@@ -5,13 +5,13 @@
 
 <p>Previewing entry <a href="<?= $preview_url ?>">#<?= $entry_id ?> <small>(latest revision)</small></a></p>
 
-<p class='top'>
+<p class='top'  style="text-align:right">
 	<a href='#' class='btn toggle enlarge-iframe'>
-		<?php print $this->lang->line('enlarge_iframe') ?>
+		<?php print $this->lang->line('enlarge_preview') ?>
 	</a>
 		&nbsp;&nbsp;&nbsp;
 	<a href='#' class='btn toggle collapse shrink-iframe'>
-		<?php print $this->lang->line('shrink_iframe') ?>
+		<?php print $this->lang->line('shrink_preview') ?>
 	</a>
 </p>
 
@@ -21,13 +21,13 @@
 	</div>
 </p>
 
-<p>
+<p style="text-align:right">
 	<a href='#' class='btn toggle enlarge-iframe'>
-		<?php print $this->lang->line('enlarge_iframe') ?>
+		<?php print $this->lang->line('enlarge_preview') ?>
 	</a>
 		&nbsp;&nbsp;&nbsp;
 	<a href='#' class='btn toggle collapse shrink-iframe'>
-		<?php print $this->lang->line('shrink_iframe') ?>
+		<?php print $this->lang->line('shrink_preview') ?>
 	</a>
 </p>
 
