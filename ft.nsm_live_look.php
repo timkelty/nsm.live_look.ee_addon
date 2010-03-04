@@ -21,7 +21,7 @@ class Nsm_live_look_ft extends EE_Fieldtype
 	public $info = array
 	(
 		'name'		=> 'NSM Live Look',
-		'version' 	=> '0.1.0'
+		'version' 	=> '0.1.1'
 	);
 
 	/**

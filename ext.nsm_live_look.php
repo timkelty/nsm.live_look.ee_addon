@@ -47,7 +47,7 @@ class Nsm_live_look_ext
 	 * @access		protected
 	 * @var 		string
 	 */
-	public static $addon_version = '0.1.0';
+	public static $addon_version = '0.1.1';
 
 	/**
 	 * Link to documentation for this extension. EE use.

@@ -17,5 +17,18 @@
 			</description>
 			<enclosure url="https://github.com/newism/nsm.live_look.ee_addon/zipball/0.1.0" length="16261" type="application/zip" />
 		 </item>
+		<item>
+			<title>Version 0.1.1</title>
+			<ee_addon:version>0.1.1</ee_addon:version>
+			<link>https://github.com/newism/nsm.live_look.ee_addon//tree/0.1.1</link>
+			<pubDate>Thursday, 4 Mar 2010 13:51:55 +1100</pubDate>
+			<description><![CDATA[
+				<ul>
+					<li>Hotfix for installer</li>
+				</ul>
+			]]>
+			</description>
+			<enclosure url="https://github.com/newism/nsm.live_look.ee_addon/zipball/0.1.1" length="16261" type="application/zip" />
+		 </item>
 	</channel>
 </rss>

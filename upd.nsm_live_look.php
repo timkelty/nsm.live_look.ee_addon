@@ -13,7 +13,7 @@ class Nsm_live_look_upd
 	 *
 	 * @var string
 	 */
-	public static $version = '2.0.0';
+	public static $version = '0.1.1';
 	
 	/**
 	 * The name of the module
