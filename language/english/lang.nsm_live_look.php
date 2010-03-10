@@ -22,7 +22,7 @@ $lang = array(
 	'channel_preferences_title'				=> 'Channel preferences',
 	'channel_preferences_info'				=> "<p>Each channel has it's own unique preview URL. This URL is used to display the live page preview inside the publish tab.</p>
 												<p>The preview url setting will have the following variables replaced with entry specific attributes allowing you to create highly customisable urls:</p>
-												<ul>
+												<ul class='tag-list'>
 													<li>{url_title}</li>
 													<li>{entry_id}</li>
 													<li>{channel_id}</li>
