@@ -42,5 +42,19 @@
 			</description>
 			<enclosure url="https://github.com/newism/nsm.live_look.ee_addon/zipball/0.1.1" length="17274" type="application/zip" />
 		 </item>
+		<item>
+			<title>Version 0.2.0</title>
+			<ee_addon:version>0.2.0</ee_addon:version>
+			<link>https://github.com/newism/nsm.live_look.ee_addon//tree/0.2.0</link>
+			<pubDate>Saturday, 22 may 2010 18:00:00 +1100</pubDate>
+			<description><![CDATA[
+				<ul>
+					<li>Rewrote large chunks of the addon</li>
+					<li>Implemented multiple previews for a single channel</li>
+				</ul>
+			]]>
+			</description>
+			<enclosure url="https://github.com/newism/nsm.live_look.ee_addon/zipball/0.2.0" length="17274" type="application/zip" />
+		 </item>
 	</channel>
 </rss>
