@@ -1,14 +1,10 @@
-.iframe-wrap
-{
-	margin: 5px 17px 0px 12px;
-}
-
-#llp_frame
-{
+.publish_nsm_live_look .menu{margin-top:9px; margin-bottom:9px;}
+.publish_nsm_live_look .top{float:right; margin:4px 0 0 9px !important;}
+.publish_nsm_live_look .btn{margin-right:0; margin-left:5px;}
+.publish_nsm_live_look .iframe-wrap iframe{
+	border:none;
+	border-top:1px solid #A7B6BF;
 	height:500px;
-	width:99.7%;
-	border: 1px solid rgb(182, 192, 194);
-	-webkit-border-radius:3px;
-	-moz-border-radius:3px;
+	width:100%;
 	background:#fff;
 }

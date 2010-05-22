@@ -1,31 +1,34 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * @package			NSM
- * @subpackage		LiveLook
- * @version			0.1.0
- * @author			Leevi Graham & Anthony Short <leevi@newism.com.au>
+ * Fieldtype for NSM Live Look: Displays the preview iframe
+ *
+ * @package			NsmLiveLook
+ * @version			0.2.0
+ * @author			Leevi Graham <leevi@newism.com.au>
  * @link			http://github.com/newism/nsm.live_look.ee-addon
- * @see				http://expressionengine.com/public_beta/docs/development/fieldtypes.html
- * @copyright 		Copyright (c) 2007-2009 Newism
+ * @copyright 		Copyright (c) 2007-2010 Newism
  * @license 		Commercial - please see LICENSE file included with this distribution
-*
-*/
+ */
 class Nsm_live_look_ft extends EE_Fieldtype
 {
 	/**
-	 * Fieldtype information
-	 *
+	 * Field info - Required
+	 * 
+	 * @access public
 	 * @var array
 	 */
-	public $info = array
-	(
+	public $info = array(
 		'name'		=> 'NSM Live Look',
-		'version' 	=> '0.1.1'
+		'version'	=> '0.2.0'
 	);
 
+	public $field_id;
+	public $field_name;
+	public $EE;
+
 	/**
-	 * The field settings array
+	 * The fieldtype global settings array
 	 * 
 	 * @access public
 	 * @var array
@@ -38,27 +41,18 @@ class Nsm_live_look_ft extends EE_Fieldtype
 	 * @access private
 	 * @var string
 	 */
-	private $field_type;
+	public $field_type = '';
 
 	/**
 	 * Constructor
 	 * 
-	 * Calls the parent constructor
-	 *
 	 * @access public
 	 */
 	public function __construct()
 	{
-		if(!class_exists('Nsm_live_look_ext'))
-		{
-			require_once dirname(__FILE__) . '/ext.nsm_live_look.php';
-		}
-		
-		# Get everything ready for EE using the main addon class
-		$this->field_type = Nsm_live_look_ext::id();
-		
+		$this->field_type = strtolower(substr(__CLASS__, 0, -3));
 		parent::EE_Fieldtype();
-	}
+	}	
 
 	/**
 	 * Display the field in the publish form
@@ -69,46 +63,40 @@ class Nsm_live_look_ft extends EE_Fieldtype
 	 */
 	public function display_field($data)
 	{
-		$channel_id 	= $this->EE->input->get('channel_id');
+		$channel_id 	= $this->settings["channel_id"];
 		$entry_id 		= $this->EE->input->get('entry_id');
-		$preview_url	= '';
-		
+
 		if(!class_exists('Nsm_live_look_ext'))
 			include(PATH_THIRD.'nsm_live_look/ext.nsm_live_look.php');
 			
 		$ext = new Nsm_live_look_ext();
-
-		if(!isset($ext->settings['channels'][$channel_id]))
-		{
-			$ext->settings['channels'][$channel_id] = $ext->_buildDefaultChannelSettings($channel_id);
-		}
+		$channel_urls = $ext->_channelSettings($channel_id);
 
 		# Add the custom field stylesheet to the header 
 		$this->EE->cp->load_package_css('custom_field');
 		
 		# Load the JS for the iframe
 		$this->EE->cp->load_package_js('jquery.cookie');
-		$this->EE->cp->load_package_js('admin_publish');  
-
+		$this->EE->cp->load_package_js('custom_field');  
 		$this->EE->lang->loadfile('nsm_live_look');
 
-		if($entry_id)
+		if($entry_id && $channel_urls)
 		{
-			$preview_url = $ext->settings['channels'][$channel_id]['preview_url'];
-			$preview_url = $this->parse_url($preview_url, $entry_id);
+			foreach ($channel_urls as &$url) {
+				$url["url"] = $this->parse_url($url["url"], $entry_id, $url["page_url"]);
+			}
 		}
 
 		$field_data = array
 		(
-			'entry_id'			=> $entry_id,
-			'field_name' 		=> $this->field_name,
-			'channel_id' 		=> $channel_id,
-			'preview_url' 		=> $preview_url
+			'entry_id'		=> $entry_id,
+			'field_name' 	=> $this->field_name,
+			'channel_id' 	=> $channel_id,
+			'urls' 			=> $channel_urls
 		);
-		
-		return $this->EE->load->view('custom_field', $field_data, TRUE);
-	}
-	
+
+		return $this->EE->load->view('custom_fields/custom_field', $field_data, TRUE);
+	}	
 	/**
 	 * Parses a preview url string and replaces each of the tags with the data
 	 * from the entry id given as an argument.
@@ -154,4 +142,6 @@ class Nsm_live_look_ft extends EE_Fieldtype
 
 		return $this->EE->functions->create_url($url);
 	}
+
 }
+//END CLASS

@@ -78,6 +78,10 @@ There are no specific upgrade notes for this version.
 
 ### Change log
 
+#### 0.2.0
+
+* Rewrite for multiple preview urls
+
 #### 0.1.0
 
 * Initial release with docs

@@ -1,3 +1,15 @@
+<!--
+/**
+ * XML Changelog for NSM Live Look
+ *
+ * @package			NsmLiveLook
+ * @version			0.2.0
+ * @author			Leevi Graham <leevi@newism.com.au>
+ * @link			http://github.com/newism/nsm.live_look.ee-addon
+ * @copyright 		Copyright (c) 2007-2010 Newism
+ * @license 		Commercial - please see LICENSE file included with this distribution
+ */
+-->
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:ee_addon="http://newism.com.au/nsm_addon_updater/#rss-xml">
 	<channel>

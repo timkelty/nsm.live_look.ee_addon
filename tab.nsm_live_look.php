@@ -1,56 +1,93 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * Nsm_live_look_tab
+ * Tabs for NSM Live Look
  *
- * Adds the tabs for this modulate
- *
- * @package default
- * @author Anthony Short & Leevi Graham
+ * @package			NsmLiveLook
+ * @version			0.2.0
+ * @author			Leevi Graham <leevi@newism.com.au>
+ * @link			http://github.com/newism/nsm.live_look.ee-addon
+ * @copyright 		Copyright (c) 2007-2010 Newism
+ * @license 		Commercial - please see LICENSE file included with this distribution
  */
 class Nsm_live_look_tab
 {
 	/**
-	 * Add tabs to the publish page
+	 * This function creates the fields that will be displayed on the publish page. It must return $settings, a multidimensional associative array specifying the display settings and values associated with each of your custom fields.
 	 *
-	 * @param $channel_id int The channel id
-	 * @param $entry_id mixed The entry id if the entry already exists, FALSE if a new entry
-	 * @return array The fields inside the tab
+	 * The settings array:
+	 * field_id: The name of the field
+	 * field_type: The field type
+	 * field_label: The field label- typically a language variable is used here
+	 * field_instructions: Instructions for the field
+	 * field_required: Indicates whether to include the 'required' class next to the field label: y/n
+	 * field_data: The current data, if applicable
+	 * field_list_items: An array of options, otherwise an empty string.
+	 * options: An array of options, otherwise an empty string.
+	 * selected: The selected value if applicable to the field_type
+	 * field_fmt: Allowed field format options, if applicable: an associative array or empty string.
+	 * field_show_fmt: Determines whether the field format dropdown shows: y/n. Note- if 'y', you must specify the options available in field_fmt
+	 * field_pre_populate: Allows you to pre-populate a field when it is a new entry.
+	 * field_text_direction: The direction of the text: ltr/rtl
+	 *
+	 * @param int $channel_id The channel_id the entry is currently being created in
+	 * @param mixed $entry_id The entry_id if an edit, false for new entries
+	 * @return array The settings array
 	 */
 	public function publish_tabs($channel_id, $entry_id = FALSE)
 	{
-		if(!class_exists('Nsm_live_look_ext'))
-		{
-			require_once dirname(__FILE__) . '/ext.nsm_live_look.php';
-		}
-
 		$EE =& get_instance();
 		$EE->lang->loadfile('nsm_live_look');
-		
+
 		$field_settings[] = array(
-					'field_id'             => Nsm_live_look_ext::id(),
-					'field_label'          => Nsm_live_look_ext::name(),
-					'field_required'       => 'n',
-					'field_data'           => '',
-					'field_list_items'     => '',
-					'field_fmt'            => '',
-					'field_instructions'   => '',
-					'field_show_fmt'       => 'n',
-					'field_pre_populate'   => 'n',
-					'field_text_direction' => 'ltr',
-					'field_type'           => Nsm_live_look_ext::id()
-				);
+			'field_id' => 'nsm_live_look_ft',
+			'field_type' => 'nsm_live_look',
+			'field_label' => 'NSM Live Look',
+			'field_instructions' => '',
+			'field_required' => '',
+			'field_data' => '',
+			'field_list_items' => '',
+			'options' => '',
+			'selected' => '',
+			'field_fmt' => '',
+			'field_show_fmt' => 'n',
+			'field_pre_populate' => '',
+			'field_text_direction' => 'ltr',
+			'channel_id' => $channel_id
+		);
 
 		return $field_settings;
 	}
 
 	/**
-	 * Validates the submitted data
+	 * Allows you to validate the data after the publish form has been submitted but before any additions to the database. Returns FALSE if there are no errors, an array of errors otherwise.
 	 *
-	 * @return boolean TRUE if the data is valid, FALSE if invalid
+	 * @param $params  multidimensional associative array containing all of the data available on the current submission.
+	 * @return mixed Returns FALSE if there are no errors, an array of errors otherwise
 	 */
-	public function validate_publish()
+	public function validate_publish($params)
 	{
-		return TRUE;
+		$errors = FALSE;
+		return $errors;
+	}
+
+	/**
+	 * Allows the insertion of data after the core insert/update has been done, thus making available the current $entry_id. Returns nothing.
+	 *
+	 * @param array $params an associative array, the top level arrays consisting of: 'meta', 'data', 'mod_data', and 'entry_id'.
+	 * @return void
+	 */
+	public function publish_data_db($params)
+	{
+	}
+
+	/**
+	 * Called near the end of the entry delete function, this allows you to sync your records if any are tied to channel entry_ids. Returns nothing.
+	 *
+	 * @param array $entry_ids The deleted entrys
+	 * @return void
+	 */
+	public function publish_data_delete_db($entry_ids)
+	{
 	}
 }

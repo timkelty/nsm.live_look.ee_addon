@@ -1,13 +1,15 @@
 <?php
+
 /**
-* English language file 
-* 
-* @package LiveLook
-* @version 2.0.0
-* @author Anthony Short <http://newism.com.au>
-* @copyright Copyright (c) 2007-2010 Newism Pty Ltd
-* @license http://creativecommons.org/licenses/by-sa/3.0/ Creative Commons Attribution-Share Alike 3.0 Unported.
-*/
+ * Language file for NSM Live Look
+ *
+ * @package			NsmLiveLook
+ * @version			0.2.0
+ * @author			Leevi Graham <leevi@newism.com.au>
+ * @link			http://github.com/newism/nsm.live_look.ee-addon
+ * @copyright 		Copyright (c) 2007-2010 Newism
+ * @license 		Commercial - please see LICENSE file included with this distribution
+ */
 
 $lang = array(
 
@@ -20,8 +22,7 @@ $lang = array(
 	'extension_settings_saved_success' 		=> 'Extension settings have been saved.',
 
 	'channel_preferences_title'				=> 'Channel preferences',
-	'channel_preferences_info'				=> "<p>Each channel has it's own unique preview URL. This URL is used to display the live page preview inside the publish tab.</p>
-												<p>The preview url setting will have the following variables replaced with entry specific attributes allowing you to create highly customisable urls:</p>
+	'channel_preferences_info'				=> "<p>Each channel can have one or more entry preview URLs. This URL is used to display the live page preview inside the publish tab <code>&lt;iframe&gt;</code>. Each preview URL is made up of the following attributes:</p>
 												<ul class='tag-list'>
 													<li>{url_title}</li>
 													<li>{entry_id}</li>
@@ -43,8 +44,9 @@ $lang = array(
 	'shrink_preview'						=> 'Shrink Preview',
 	'enlarge_preview'						=> 'Enlarge Preview',
 	
-	'msg.warning.no_channels'				=> 'No channels exists for this site',
-	'msg.info.entry_unsaved'				=> 'You need to save the entry before you can preview it with Live Look',
+	'alert.warning.no_channels'				=> 'No channels exists for this site',
+	'alert.info.entry_unsaved'				=> 'Entry must be saved before you can preview it',
+	'alert.info.no_preview_urls'			=> 'No preview URLS exist for this channel',
 	
 	// END
 	''=>''

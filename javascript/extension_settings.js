@@ -1,7 +1,5 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 /**
- * Control panel admin for NSM Live Look
+ * jQuery code for extension settings
  *
  * @package			NsmLiveLook
  * @version			0.2.0
@@ -10,9 +8,9 @@
  * @copyright 		Copyright (c) 2007-2010 Newism
  * @license 		Commercial - please see LICENSE file included with this distribution
  */
-class Nsm_live_look_mcp{
-
-	public function __construct()
-	{
-	}
-}
+jQuery(document).ready(function($) {
+	$("#preview-urls").NSM_Cloneable({
+		cloneTemplate: NSM_Live_Look.templates.$preview_url
+	})
+	.NSM_UpdateInputsOnChange();
+});
