@@ -52,9 +52,10 @@
 					<li>Rewrote large chunks of the addon</li>
 					<li>Implemented multiple previews for a single channel</li>
 				</ul>
+				<p>There is no auto update for this version. Delete the NSM Live Look DB records from <code>exp_extensions</code> &amp; <code>exp_nsm_addon_settings</code></p>
 			]]>
 			</description>
-			<enclosure url="https://github.com/newism/nsm.live_look.ee_addon/zipball/0.2.0" length="17274" type="application/zip" />
+			<enclosure url="https://github.com/newism/nsm.live_look.ee_addon/zipball/0.2.0" length="22611" type="application/zip" />
 		 </item>
 	</channel>
 </rss>
