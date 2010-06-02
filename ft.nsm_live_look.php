@@ -70,7 +70,8 @@ class Nsm_live_look_ft extends EE_Fieldtype
 			include(PATH_THIRD.'nsm_live_look/ext.nsm_live_look.php');
 			
 		$ext = new Nsm_live_look_ext();
-		$channel_urls = $ext->_channelSettings($channel_id);
+		$channel_settings = $ext->_channelSettings($channel_id);
+		$channel_urls = $channel_settings["urls"];
 
 		# Add the custom field stylesheet to the header 
 		$this->EE->cp->load_package_css('custom_field');
@@ -82,8 +83,9 @@ class Nsm_live_look_ft extends EE_Fieldtype
 
 		if($entry_id && $channel_urls)
 		{
-			foreach ($channel_urls as &$url) {
-				$url["url"] = $this->parse_url($url["url"], $entry_id, $url["page_url"]);
+			foreach ($channel_urls as &$url)
+			{
+				$url["url"] = $this->parse_url($url["url"], $entry_id);
 			}
 		}
 
