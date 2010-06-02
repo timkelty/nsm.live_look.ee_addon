@@ -145,7 +145,10 @@ class Nsm_live_look_ext
 					}
 				}
 				$this->settings = $this->_saveSettings($new_settings);
-				$vars['message'] = $EE->lang->line('alert.success.extension_settings_saved');
+				$EE->session->set_flashdata('message_success', $this->name . ": ". $EE->lang->line('alert.success.extension_settings_saved'));
+				$EE->functions->redirect(BASE.AMP.'C=addons_extensions');
+				// $this->_eeNotice('alert.success.extension_settings_saved');
+				// $vars['message'] = $EE->lang->line('alert.success.extension_settings_saved');
 			}
 		}
 		// PARSE SETTINGS FOR FORM FORMAT
@@ -187,13 +190,21 @@ class Nsm_live_look_ext
 
 		// add the releases php / js object
 		$EE->cp->add_to_foot('<script type="text/javascript" charset="utf-8">'.$js.'</script>');
+		$EE->cp->add_to_foot("dddddd");
 		$EE->cp->load_package_js('extension_settings');
 
 		// Return the view.
 		return $EE->load->view('extension_settings/extension_settings', $vars, TRUE);
 	}
-	
-	/**
+
+	private function _eeNotice($msg, $type="success")
+	{
+		$EE =& get_instance();
+		$EE->javascript->output(array(
+			'$.ee_notice("'.$EE->lang->line($msg).'",{type:"'.$type.'"});'
+		));
+	}
+		/**
 	 * Builds default settings for the site
 	 *
 	 * @access public
