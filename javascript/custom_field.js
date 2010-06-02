@@ -10,13 +10,13 @@
  */
 jQuery(document).ready(function($) {
 
-	h = $.cookie("nsm_live_look_h") || 200;
-	$iframe = $(".iframe-wrap iframe").attr({"height": h+"px"});
+	var h = $.cookie("nsm_live_look_h") || 200;
+	$iframe = $(".iframe-wrap iframe").attr("height", h+"px");
 
 	$('.enlarge-iframe').click(function() {
-		h = h + 100;
+		h = parseInt(h) + 100;
 		$iframe.height(h);
-		$.cookie("lg_live_look_h", h);
+		$.cookie("nsm_live_look_h", h);
 		return false;
 	});
 
@@ -25,7 +25,7 @@ jQuery(document).ready(function($) {
 		{
 			h = h - 100;
 			$iframe.height(h);
-			$.cookie("lg_live_look_h", h);
+			$.cookie("nsm_live_look_h", h);
 		}
 		return false;
 	});
