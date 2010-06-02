@@ -85,7 +85,7 @@ class Nsm_live_look_ft extends EE_Fieldtype
 		{
 			foreach ($channel_urls as &$url)
 			{
-				$url["url"] = $this->parse_url($url["url"], $entry_id);
+				$url["url"] = $this->parse_url($url["url"], $entry_id, $url["page_url"]);
 			}
 		}
 
@@ -98,7 +98,8 @@ class Nsm_live_look_ft extends EE_Fieldtype
 		);
 
 		return $this->EE->load->view('custom_fields/custom_field', $field_data, TRUE);
-	}	
+	}
+
 	/**
 	 * Parses a preview url string and replaces each of the tags with the data
 	 * from the entry id given as an argument.
@@ -108,11 +109,11 @@ class Nsm_live_look_ft extends EE_Fieldtype
 	 * @param 	$entry_id	int   		The id of the channel entry to base the url on
 	 * @return 	string
 	 */
-	private function parse_url($url,$entry_id)
+	private function parse_url($url,$entry_id, $page_url=FALSE)
 	{
-		if(isset($this->EE->config->config["site_pages"]["uris"][$entry_id]))
+		if($page_url && isset($this->EE->config->config["site_pages"][SITE_ID]["uris"][$entry_id]))
 		{
-			$url = $this->EE->config->config['site_pages']['uris'][$entry_id];
+			$url = $this->EE->config->config['site_pages'][SITE_ID]['uris'][$entry_id];
 		}
 		else
 		{
@@ -123,7 +124,7 @@ class Nsm_live_look_ft extends EE_Fieldtype
 				->limit(1)
 				->get()
 				->result_array();
- 
+
 			if(count($query) > 0)
 			{
 				$data = $query[0];
@@ -131,7 +132,7 @@ class Nsm_live_look_ft extends EE_Fieldtype
 				$data['entry_date_day'] 	= date('d', $data['entry_date']);
 				$data['entry_date_month'] 	= date('m', $data['entry_date']);
 				$data['entry_date_year'] 	= date('Y', $data['entry_date']);
- 
+
 				foreach ($data as $key => $value)
 				{
 					if(strpos($url, LD.$key.RD) !== FALSE)
@@ -142,8 +143,12 @@ class Nsm_live_look_ft extends EE_Fieldtype
 			}
 		}
 
-		return $this->EE->functions->create_url($url);
+		if(!substr($url, 0, 4) == "http")
+			return $this->EE->functions->create_url($url);
+		else
+			return $url;
 	}
+
 
 }
 //END CLASS
