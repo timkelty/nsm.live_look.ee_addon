@@ -19,7 +19,6 @@ $lang = array(
 	'nsm_live_look_module_description'		=> 'Live preview on the publish page',
 	
 	'save_extension_settings'				=> 'Save extension settings',
-	'extension_settings_saved_success' 		=> 'Extension settings have been saved.',
 
 	'channel_preferences_title'				=> 'Channel preferences',
 	'channel_preferences_info'				=> "<p>Each channel can have one or more entry preview URLs. This URL is used to display the live page preview inside the publish tab <code>&lt;iframe&gt;</code>. Each preview URL is made up of the following attributes:</p>
@@ -46,7 +45,8 @@ $lang = array(
 	
 	'alert.warning.no_channels'				=> 'No channels exists for this site',
 	'alert.info.entry_unsaved'				=> 'Entry must be saved before you can preview it',
-	'alert.info.no_preview_urls'			=> 'No preview URLS exist for this channel',
+	'alert.info.no_preview_urls'				=> 'No preview URLS exist for this channel',
+	'alert.success.extension_settings_saved' 	=> 'Extension settings have been saved.',
 	
 	// END
 	''=>''
