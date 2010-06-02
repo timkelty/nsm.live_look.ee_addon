@@ -196,14 +196,7 @@ class Nsm_live_look_ext
 		return $EE->load->view('extension_settings/extension_settings', $vars, TRUE);
 	}
 
-	private function _eeNotice($msg, $type="success")
-	{
-		$EE =& get_instance();
-		$EE->javascript->output(array(
-			'$.ee_notice("'.$EE->lang->line($msg).'",{type:"'.$type.'"});'
-		));
-	}
-		/**
+	/**
 	 * Builds default settings for the site
 	 *
 	 * @access public
