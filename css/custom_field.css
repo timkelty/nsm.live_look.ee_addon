@@ -1,10 +1,10 @@
 .publish_nsm_live_look .menu{margin-top:9px; margin-bottom:9px;}
-.publish_nsm_live_look .top{float:right; margin:4px 0 0 9px !important;}
+.publish_nsm_live_look .info a.icon{position:absolute; top:7px; right:10px;}
+.publish_nsm_live_look .info a.icon.add{right:32px;}
 .publish_nsm_live_look .btn{margin-right:0; margin-left:5px;}
 .publish_nsm_live_look .iframe-wrap iframe{
 	border:none;
 	border-top:1px solid #A7B6BF;
-	height:500px;
 	width:100%;
 	background:#fff;
 }
