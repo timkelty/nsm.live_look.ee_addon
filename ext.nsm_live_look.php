@@ -16,7 +16,7 @@ class Nsm_live_look_ext
 	 * Version number of this extension. Should be in the format "x.x.x", with only integers used.	EE use.
 	 * @var 		string
 	 */
-	public $version			= '1.0.0';
+	public $version			= '0.2.0';
 
 	/**
 	 * Display name for this extension.
