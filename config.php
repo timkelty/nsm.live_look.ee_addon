@@ -16,4 +16,4 @@ $config['version']	 		= '0.2.0';
 $config['nsm_addon_updater']['versions_xml'] 			= 'http://github.com/newism/nsm.live_look.ee_addon/raw/master/versions.xml';
 
 // Local test XML
-// $config['nsm_addon_updater']['versions_xml'] = 'http://local.expressionengine-addons.com/system/expressionengine/third_party/nsm_addon_updater/test_versions.xml';
+// $config['nsm_addon_updater']['versions_xml'] = 'http://local.expressionengine-addons.com/system/expressionengine/third_party/nsm_live_look/test_versions.xml';
