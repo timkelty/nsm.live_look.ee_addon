@@ -10,6 +10,7 @@
  */
 jQuery(document).ready(function($) {
 	$("#preview-urls").NSM_Cloneable({
+		addTrigger: function(){return $(this).next().find(".add")},
 		cloneTemplate: NSM_Live_Look.templates.$preview_url
 	})
 	.NSM_UpdateInputsOnChange();

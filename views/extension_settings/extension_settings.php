@@ -76,7 +76,9 @@
 				?>
 			</tbody>
 		</table>
-		<span class="btn add">Add another preview URL</span>
+		<div class="actions">
+			<span class="icon add">Add another preview URL</span>
+		</div>
 	</div>
 
 	<!-- 

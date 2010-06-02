@@ -51,6 +51,6 @@
 		 />
 	</td>
 	<td>
-		<span class="btn delete">Delete</span>
+		<span class="icon delete">Delete</span>
 	</td>
 </tr>

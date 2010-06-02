@@ -17,14 +17,6 @@
 	<?php elseif(!$urls): ?>
 		<div class="alert error"><p><?php print $this->lang->line('alert.info.no_preview_urls'); ?></p></div>
 	<?php else: ?>
-		<p class='top'>
-			<a href='#' class='btn enlarge-iframe'>
-				<?php print $this->lang->line('enlarge_preview') ?>
-			</a>
-			<a href='#' class='btn shrink-iframe'>
-				<?php print $this->lang->line('shrink_preview') ?>
-			</a>
-		</p>
 		<ul class="menu tabs">
 			<?php foreach($urls as $count => $url) : ?>
 				<li><a href="#url-<?=$count?>" class="active"><?= $url["title"]; ?></a></li>
@@ -32,7 +24,15 @@
 		</ul>
 		<?php foreach($urls as $count => $url) : ?>
 			<div id="url-<?=$count?>" class='iframe-wrap tg'>
-				<div class="alert info" style="margin:0">URL: <a href="<?= $url["url"]; ?>"><?= $url["url"]; ?></a></div>
+				<div class="alert info" style="margin:0">
+					<a href='#' class='icon delete shrink-iframe'>
+						<?php print $this->lang->line('shrink_preview') ?>
+					</a>
+					<a href='#' class='icon add enlarge-iframe'>
+						<?php print $this->lang->line('enlarge_preview') ?>
+					</a>
+					URL: <a href="<?= $url["url"]; ?>"><?= $url["url"]; ?></a>
+				</div>
 				<iframe src='<?= $url["url"]; ?>'></iframe>
 			</div>
 		<?php endforeach; ?>
