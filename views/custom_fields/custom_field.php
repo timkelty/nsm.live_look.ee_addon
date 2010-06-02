@@ -31,7 +31,7 @@
 					<a href='#' class='icon add enlarge-iframe'>
 						<?php print $this->lang->line('enlarge_preview') ?>
 					</a>
-					URL: <a href="<?= $url["url"]; ?>"><?= $url["url"]; ?></a>
+					Previewing: <a href="<?= $url["url"]; ?>" target="_blank"><?= $url["url"]; ?></a>
 				</div>
 				<iframe src='<?= $url["url"]; ?>'></iframe>
 			</div>
