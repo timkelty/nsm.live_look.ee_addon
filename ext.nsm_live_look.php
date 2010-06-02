@@ -190,7 +190,6 @@ class Nsm_live_look_ext
 
 		// add the releases php / js object
 		$EE->cp->add_to_foot('<script type="text/javascript" charset="utf-8">'.$js.'</script>');
-		$EE->cp->add_to_foot("dddddd");
 		$EE->cp->load_package_js('extension_settings');
 
 		// Return the view.
