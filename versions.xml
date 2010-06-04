@@ -3,7 +3,7 @@
  * XML Changelog for NSM Live Look
  *
  * @package			NsmLiveLook
- * @version			0.2.0
+ * @version			0.3.0
  * @author			Leevi Graham <leevi@newism.com.au>
  * @link			http://github.com/newism/nsm.live_look.ee-addon
  * @copyright 		Copyright (c) 2007-2010 Newism
@@ -46,7 +46,7 @@
 			<title>Version 0.2.0</title>
 			<ee_addon:version>0.2.0</ee_addon:version>
 			<link>https://github.com/newism/nsm.live_look.ee_addon//tree/0.2.0</link>
-			<pubDate>Saturday, 22 may 2010 18:00:00 +1100</pubDate>
+			<pubDate>Saturday, 22 May 2010 18:00:00 +1100</pubDate>
 			<description><![CDATA[
 				<ul>
 					<li>Rewrote large chunks of the addon</li>
@@ -56,6 +56,20 @@
 			]]>
 			</description>
 			<enclosure url="https://github.com/newism/nsm.live_look.ee_addon/zipball/0.2.0" length="22611" type="application/zip" />
+		 </item>
+		<item>
+			<title>Version 0.3.0</title>
+			<ee_addon:version>0.3.0</ee_addon:version>
+			<link>https://github.com/newism/nsm.live_look.ee_addon//tree/0.3.0</link>
+			<pubDate>Wednesday, 2 Jun 2010 18:16:00 -0800</pubDate>
+			<description><![CDATA[
+				<ul>
+					<li>Changed file structure</li>
+					<li>Updated styles</li>
+				</ul>
+			]]>
+			</description>
+			<enclosure url="https://github.com/newism/nsm.live_look.ee_addon/zipball/0.3.0" length="22611" type="application/zip" />
 		 </item>
 	</channel>
 </rss>

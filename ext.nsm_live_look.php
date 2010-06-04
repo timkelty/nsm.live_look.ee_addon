@@ -4,7 +4,7 @@
  * Extension file, hooks and addon settings
  *
  * @package			NsmLiveLook
- * @version			0.2.0
+ * @version			0.3.0
  * @author			Leevi Graham <leevi@newism.com.au>
  * @link			http://github.com/newism/nsm.live_look.ee-addon
  * @copyright 		Copyright (c) 2007-2010 Newism
@@ -16,7 +16,7 @@ class Nsm_live_look_ext
 	 * Version number of this extension. Should be in the format "x.x.x", with only integers used.	EE use.
 	 * @var 		string
 	 */
-	public $version			= '0.2.0';
+	public $version			= '0.3.0';
 
 	/**
 	 * Display name for this extension.
@@ -68,7 +68,7 @@ class Nsm_live_look_ext
 	 * Hooks for the extension
 	 * @var			array
 	 **/
-	public $hooks = array('my_hook_function');
+	// public $hooks = array('my_hook_function');
 
 	// ====================================
 	// = Delegate & Constructor Functions =
@@ -97,14 +97,13 @@ class Nsm_live_look_ext
 			// get the settings from our custom settings DB
 			$this->settings = $this->_getSettings();
 		}
-
 	}
 
 	// ===============================
 	// = Hook Functions =
 	// ===============================
 
-	public function my_hook_function(){}
+	// public function my_hook_function(){}
 
 	// ===============================
 	// = Setting Functions =

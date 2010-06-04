@@ -4,7 +4,7 @@
  * Fieldtype for NSM Live Look: Displays the preview iframe
  *
  * @package			NsmLiveLook
- * @version			0.2.0
+ * @version			0.3.0
  * @author			Leevi Graham <leevi@newism.com.au>
  * @link			http://github.com/newism/nsm.live_look.ee-addon
  * @copyright 		Copyright (c) 2007-2010 Newism
@@ -20,7 +20,7 @@ class Nsm_live_look_ft extends EE_Fieldtype
 	 */
 	public $info = array(
 		'name'		=> 'NSM Live Look',
-		'version'	=> '0.2.0'
+		'version'	=> '0.3.0'
 	);
 
 	public $field_id;

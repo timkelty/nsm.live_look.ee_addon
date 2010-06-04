@@ -3,7 +3,7 @@
  * Custom field
  *
  * @package			NsmLiveLook
- * @version			0.2.0
+ * @version			0.3.0
  * @author			Leevi Graham <leevi@newism.com.au>
  * @link			http://github.com/newism/nsm.live_look.ee-addon
  * @copyright 		Copyright (c) 2007-2010 Newism
@@ -25,13 +25,9 @@
 		<?php foreach($urls as $count => $url) : ?>
 			<div id="url-<?=$count?>" class='iframe-wrap tg'>
 				<div class="alert info" style="margin:0">
-					<a href='#' class='icon delete shrink-iframe'>
-						<?php print $this->lang->line('shrink_preview') ?>
-					</a>
-					<a href='#' class='icon add enlarge-iframe'>
-						<?php print $this->lang->line('enlarge_preview') ?>
-					</a>
 					Previewing: <a href="<?= $url["url"]; ?>" target="_blank"><?= $url["url"]; ?></a>
+					<a href='#' class='icon add enlarge-iframe'><?php print $this->lang->line('enlarge_preview') ?></a>
+					<a href='#' class='icon delete shrink-iframe'><?php print $this->lang->line('shrink_preview') ?></a>
 				</div>
 				<iframe src='<?= $url["url"]; ?>'></iframe>
 			</div>

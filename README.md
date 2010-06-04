@@ -24,6 +24,7 @@ Technical requirements include:
 1. [Download][download] the latest version of NSM Live Look
 2. Extract the .zip file to your desktop
 3. Rename the extracted folder to `nsm_live_look` and copy it to your `system/expressionengine/third_party/` directory
+4. Move (or symlink) `system/expressionengine/third_party/nsm_live_look/themes/nsm_live_look` to the `themes` directory
 
 ### Activation
 
@@ -77,6 +78,12 @@ Release Notes
 There are no specific upgrade notes for this version.
 
 ### Change log
+
+#### 0.3.0
+
+* Added Morphine styles
+* Rewrote Javascript
+* Modified folder structure
 
 #### 0.2.0
 
