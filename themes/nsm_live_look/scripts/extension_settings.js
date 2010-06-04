@@ -2,7 +2,7 @@
  * jQuery code for extension settings
  *
  * @package			NsmLiveLook
- * @version			0.2.0
+ * @version			0.3.0
  * @author			Leevi Graham <leevi@newism.com.au>
  * @link			http://github.com/newism/nsm.live_look.ee-addon
  * @copyright 		Copyright (c) 2007-2010 Newism
