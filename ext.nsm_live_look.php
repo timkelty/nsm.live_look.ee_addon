@@ -304,6 +304,9 @@ class Nsm_live_look_ext
 	{
 		$EE =& get_instance();
 
+		if($hooks == FALSE && isset($this->hooks) == FALSE)
+			return;
+
 		if (!$hooks)
 			$hooks = $this->hooks;
 
