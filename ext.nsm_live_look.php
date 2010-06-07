@@ -68,7 +68,7 @@ class Nsm_live_look_ext
 	 * Hooks for the extension
 	 * @var			array
 	 **/
-	// public $hooks = array('my_hook_function');
+	public $hooks = array('dummy_hook');
 
 	// ====================================
 	// = Delegate & Constructor Functions =
@@ -103,7 +103,7 @@ class Nsm_live_look_ext
 	// = Hook Functions =
 	// ===============================
 
-	// public function my_hook_function(){}
+	public function dummy_hook(){}
 
 	// ===============================
 	// = Setting Functions =
