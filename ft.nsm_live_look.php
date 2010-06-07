@@ -50,9 +50,10 @@ class Nsm_live_look_ft extends EE_Fieldtype
 	 */
 	public function __construct()
 	{
-		$this->field_type = strtolower(substr(__CLASS__, 0, -3));
+		$this->addon_id = $this->field_type = strtolower(substr(__CLASS__, 0, -3));
 		parent::EE_Fieldtype();
 	}	
+
 
 	/**
 	 * Display the field in the publish form
@@ -63,6 +64,8 @@ class Nsm_live_look_ft extends EE_Fieldtype
 	 */
 	public function display_field($data)
 	{
+		$this->EE->lang->loadfile('nsm_live_look');
+
 		$channel_id 	= $this->settings["channel_id"];
 		$entry_id 		= $this->EE->input->get('entry_id');
 
@@ -73,13 +76,14 @@ class Nsm_live_look_ft extends EE_Fieldtype
 		$channel_settings = $ext->_channelSettings($channel_id);
 		$channel_urls = $channel_settings["urls"];
 
+		$this->EE->load->library("nsm_live_look_display");
+
 		# Add the custom field stylesheet to the header 
-		$this->EE->cp->load_package_css('custom_field');
+		$this->EE->nsm_live_look_display->addCSS('custom_field.css');
 		
 		# Load the JS for the iframe
-		$this->EE->cp->load_package_js('jquery.cookie');
-		$this->EE->cp->load_package_js('custom_field');  
-		$this->EE->lang->loadfile('nsm_live_look');
+		$this->EE->nsm_live_look_display->addJS('../lib/jquery.cookie.js');
+		$this->EE->nsm_live_look_display->addJS('custom_field.js');
 
 		if($entry_id && $channel_urls)
 		{
