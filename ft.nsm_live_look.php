@@ -76,14 +76,15 @@ class Nsm_live_look_ft extends EE_Fieldtype
 		$channel_settings = $ext->_channelSettings($channel_id);
 		$channel_urls = $channel_settings["urls"];
 
-		$this->EE->load->library("nsm_live_look_display");
+		# Load the library
+		$this->EE->load->library("nsm_live_look_addon", NULL, "nsm_live_look");
 
 		# Add the custom field stylesheet to the header 
-		$this->EE->nsm_live_look_display->addCSS('custom_field.css');
+		$this->EE->nsm_live_look->addCSS('custom_field.css');
 		
 		# Load the JS for the iframe
-		$this->EE->nsm_live_look_display->addJS('../lib/jquery.cookie.js');
-		$this->EE->nsm_live_look_display->addJS('custom_field.js');
+		$this->EE->nsm_live_look->addJS('../lib/jquery.cookie.js');
+		$this->EE->nsm_live_look->addJS('custom_field.js');
 
 		if($entry_id && $channel_urls)
 		{

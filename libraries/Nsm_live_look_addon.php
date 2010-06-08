@@ -1,10 +1,15 @@
 <?php
 /**
-* NSM Live Look Display
+* Global methods used in NSM Live Look
 * 
-* A couple of simple display methods including adding CSS/JS
+* @package		NsmLiveLook
+* @version		0.3.0
+* @author		Leevi Graham <leevi@newism.com.au>
+* @link			http://github.com/newism/nsm.live_look.ee-addon
+* @copyright 	Copyright (c) 2007-2010 Newism
+* @license 		Commercial - please see LICENSE file included with this distribution
 */
-class Nsm_live_look_display{
+class Nsm_live_look_addon{
 
 	private $addon_id;
 
@@ -12,7 +17,7 @@ class Nsm_live_look_display{
 	 * Constructs the class and sets the addon id
 	 */
 	public function __construct(){
-		$this->addon_id = strtolower(substr(__CLASS__, 0 ,-8));
+		$this->addon_id = strtolower(substr(__CLASS__, 0 ,-6));
 	}
 
 	/**
@@ -29,7 +34,7 @@ class Nsm_live_look_display{
 			"where" => "head",
 			"type" => "css",
 		), $options);
-		$this->addThemeAsset($css, $options);
+		$this->_addThemeAsset($css, $options);
 	}
 
 	/**
@@ -46,7 +51,7 @@ class Nsm_live_look_display{
 			"where" => "foot",
 			"type" => "js",
 		), $options);
-		$this->addThemeAsset($js, $options);
+		$this->_addThemeAsset($js, $options);
 	}
 
 	/**
@@ -57,7 +62,7 @@ class Nsm_live_look_display{
 	 * @var $content string The CSS/JS content or filepath
 	 * @var $options array The options for this include
 	 */
-	public function addThemeAsset($content, $options)
+	public function _addThemeAsset($content, $options)
 	{
 		$EE =& get_instance();
 
