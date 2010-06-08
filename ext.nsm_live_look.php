@@ -189,8 +189,8 @@ class Nsm_live_look_ext
 
 		// add the releases php / js object
 		$EE->load->library("nsm_live_look_addon", NULL, "nsm_live_look");
-		$EE->nsm_live_look->addJS('extension_settings.js');
 		$EE->nsm_live_look->addJS($js, array("file"=>FALSE));
+		$EE->nsm_live_look->addJS('extension_settings.js');
 
 		// Return the view.
 		return $EE->load->view('extension_settings/extension_settings', $vars, TRUE);
