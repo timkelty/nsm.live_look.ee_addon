@@ -54,8 +54,7 @@ class Nsm_live_look_ext
 	 **/
 	public $default_site_settings = array(
 		'enabled' => TRUE,
-		'channels' => array(),
-		'member_groups' => array()
+		'channels' => array()
 	);
 
 	/**
@@ -84,26 +83,57 @@ class Nsm_live_look_ext
 	{
 		// set the addon id
 		$this->addon_id = strtolower(substr(__CLASS__, 0, -4));
-	
+
+		// Create a singleton reference
+		$EE =& get_instance();
+
 		// define a constant for the current site_id rather than calling $PREFS->ini() all the time
 		if (defined('SITE_ID') == FALSE)
 			define('SITE_ID', get_instance()->config->item('site_id'));
 
 		// Load settings
-		$EE =& get_instance();
 		$EE->load->model('addons_model');
 		if($EE->addons_model->extension_installed($this->addon_id))
-		{
-			// get the settings from our custom settings DB
 			$this->settings = $this->_getSettings();
-		}
+
+		// Init the cache
+		$this->_initCache();
+
 	}
+
+	/**
+	 * Initialises a cache for the addon
+	 * 
+	 * @access private
+	 * @return void
+	 */
+	private function _initCache()
+	{
+		// Create a singleton reference
+		$EE =& get_instance();
+
+		// Sort out our cache
+		// If the cache doesn't exist create it
+		if (! isset($EE->session->cache[$this->addon_id]))
+			$EE->session->cache[$this->addon_id] = array();
+
+		// Assig the cache to a local class variable
+		$this->cache =& $EE->session->cache[$this->addon_id];
+	}
+
+
+
+
 
 	// ===============================
 	// = Hook Functions =
 	// ===============================
 
 	public function dummy_hook(){}
+
+
+
+
 
 	// ===============================
 	// = Setting Functions =
@@ -119,13 +149,14 @@ class Nsm_live_look_ext
 	{
 		$EE =& get_instance();
 		$EE->lang->loadfile($this->addon_id);
+		$EE->load->library($this->addon_id."_addon", NULL, $this->addon_id);
 
 		// Create the variable array
 		$vars = array(
-			'message' => FALSE,
-			'error' => FALSE,
 			'addon_id' => $this->addon_id,
+			'error' => FALSE,
 			'input_prefix' => __CLASS__,
+			'message' => FALSE,
 			'channels' => $EE->channel_model->get_channels()->result()
 		);
 
@@ -133,6 +164,9 @@ class Nsm_live_look_ext
 		// PARSE POST TO SETTINGS FORMAT FOR SAVE
 		if($data = $EE->input->post(__CLASS__))
 		{
+			if(!isset($data["enabled"]))
+				$data["enabled"] = TRUE;
+
 			if(! $vars['error'] = validation_errors())
 			{
 				$new_settings["enabled"] = $data["enabled"];
@@ -146,8 +180,6 @@ class Nsm_live_look_ext
 				$this->settings = $this->_saveSettings($new_settings);
 				$EE->session->set_flashdata('message_success', $this->name . ": ". $EE->lang->line('alert.success.extension_settings_saved'));
 				$EE->functions->redirect(BASE.AMP.'C=addons_extensions');
-				// $this->_eeNotice('alert.success.extension_settings_saved');
-				// $vars['message'] = $EE->lang->line('alert.success.extension_settings_saved');
 			}
 		}
 		// PARSE SETTINGS FOR FORM FORMAT
@@ -188,7 +220,6 @@ class Nsm_live_look_ext
 			};';
 
 		// add the releases php / js object
-		$EE->load->library("nsm_live_look_addon", NULL, "nsm_live_look");
 		$EE->nsm_live_look->addJS($js, array("file"=>FALSE));
 		$EE->nsm_live_look->addJS('extension_settings.js');
 
@@ -293,61 +324,7 @@ class Nsm_live_look_ext
 	 **/
 	public function update_extension($current=FALSE){}
 
-	/**
-	 * Sets up and subscribes to the hooks specified by the $hooks array.
-	 *
-	 * @access private
-	 * @param array $hooks A flat array containing the names of any hooks that this extension subscribes to. By default, this parameter is set to FALSE.
-	 * @return void
-	 * @see http://expressionengine.com/public_beta/docs/development/extension_hooks/index.html
-	 **/
-	private function _registerHooks($hooks = FALSE)
-	{
-		$EE =& get_instance();
 
-		if($hooks == FALSE && isset($this->hooks) == FALSE)
-			return;
-
-		if (!$hooks)
-			$hooks = $this->hooks;
-
-		$hook_template = array(
-			'class'    => __CLASS__,
-			'settings' => serialize(array()),
-			'version'  => $this->version,
-		);
-
-		foreach ($hooks as $key => $hook)
-		{
-			if (is_array($hook))
-			{
-				$data['hook'] = $key;
-				$data['method'] = (isset($hook['method']) === TRUE) ? $hook['method'] : $key;
-				$data = array_merge($data, $hook);
-			}
-			else
-			{
-				$data['hook'] = $data['method'] = $hook;
-			}
-
-			$hook = array_merge($hook_template, $data);
-			$EE->db->insert('exp_extensions', $hook);
-		}
-	}
-
-	/**
-	 * Removes all subscribed hooks for the current extension.
-	 * 
-	 * @access private
-	 * @return void
-	 * @see http://expressionengine.com/public_beta/docs/development/extension_hooks/index.html
-	 **/
-	private function _unregisterHooks()
-	{
-		$EE =& get_instance();
-		$EE->db->where('class', __CLASS__);
-		$EE->db->delete('exp_extensions'); 
-	}
 
 
 	// ======================
@@ -519,7 +496,7 @@ class Nsm_live_look_ext
 	 */
 	private function _saveSettingsToSession($settings){
 		$EE =& get_instance();
-		$EE->session->cache[$this->addon_id][SITE_ID]['settings'] = $settings;
+		$this->cache[SITE_ID]['settings'] = $settings;
 		return $settings;
 	}
 
@@ -535,4 +512,69 @@ class Nsm_live_look_ext
 					? $this->settings["channels"][$channel_id]
 					: $this->_buildDefaultChannelSettings($channel_id);
 	}
+
+
+
+
+
+	// ======================
+	// = Hook Functions     =
+	// ======================
+
+	/**
+	 * Sets up and subscribes to the hooks specified by the $hooks array.
+	 *
+	 * @access private
+	 * @param array $hooks A flat array containing the names of any hooks that this extension subscribes to. By default, this parameter is set to FALSE.
+	 * @return void
+	 * @see http://expressionengine.com/public_beta/docs/development/extension_hooks/index.html
+	 **/
+	private function _registerHooks($hooks = FALSE)
+	{
+		$EE =& get_instance();
+
+		if($hooks == FALSE && isset($this->hooks) == FALSE)
+			return;
+
+		if (!$hooks)
+			$hooks = $this->hooks;
+
+		$hook_template = array(
+			'class'    => __CLASS__,
+			'settings' => "a:0:{}",
+			'version'  => $this->version,
+		);
+
+		foreach ($hooks as $key => $hook)
+		{
+			if (is_array($hook))
+			{
+				$data['hook'] = $key;
+				$data['method'] = (isset($hook['method']) === TRUE) ? $hook['method'] : $key;
+				$data = array_merge($data, $hook);
+			}
+			else
+			{
+				$data['hook'] = $data['method'] = $hook;
+			}
+
+			$hook = array_merge($hook_template, $data);
+			$EE->db->insert('exp_extensions', $hook);
+		}
+	}
+
+	/**
+	 * Removes all subscribed hooks for the current extension.
+	 * 
+	 * @access private
+	 * @return void
+	 * @see http://expressionengine.com/public_beta/docs/development/extension_hooks/index.html
+	 **/
+	private function _unregisterHooks()
+	{
+		$EE =& get_instance();
+		$EE->db->where('class', __CLASS__);
+		$EE->db->delete('exp_extensions'); 
+	}
+
 }
