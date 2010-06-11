@@ -34,7 +34,7 @@ class Nsm_live_look_addon{
 			"where" => "head",
 			"type" => "css",
 		), $options);
-		$this->_addThemeAsset($css, $options);
+		$this->addThemeAsset($css, $options);
 	}
 
 	/**
@@ -51,7 +51,7 @@ class Nsm_live_look_addon{
 			"where" => "foot",
 			"type" => "js",
 		), $options);
-		$this->_addThemeAsset($js, $options);
+		$this->addThemeAsset($js, $options);
 	}
 
 	/**
@@ -62,7 +62,7 @@ class Nsm_live_look_addon{
 	 * @var $content string The CSS/JS content or filepath
 	 * @var $options array The options for this include
 	 */
-	public function _addThemeAsset($content, $options)
+	public function addThemeAsset($content, $options)
 	{
 		$EE =& get_instance();
 
@@ -91,6 +91,7 @@ class Nsm_live_look_addon{
 
 		$method = "add_to_".$options["where"];
 		$EE->cp->$method($content);
+
 	}
 
 	/**
@@ -111,4 +112,166 @@ class Nsm_live_look_addon{
 		}
 		return $EE->session->cache[$this->addon_id]['theme_url'];
 	}
+
+	/**
+	 * Creates a select box
+	 *
+	 * @access public
+	 * @param string $input_name The name of the input eg: Lg_polls_ext[log_ip]
+	 * @param array $select_options The select box options in a multi-dimensional array. Array keys are used as the option label, array values are used as the option value
+	 * @param mixed $selected_options The selected value or an array of values
+	 * @param array $options Optional arguments.
+	 * @return string Select box html
+	 */
+	public function selectbox($input_name, array $select_options, $selected_options, array $options = array())
+	{
+		$valid_options = array(
+			"input_id" => FALSE,
+			"use_lang" => TRUE,
+			"value_is_label" => FALSE,
+			"attributes" => array()
+		);
+
+		foreach ($valid_options as $option => $default_value)
+		{
+			$$option = (isset($options[$option])) ? $options[$option] : $default_value;
+		}
+		
+		$input_id = ($input_id === FALSE) ? str_replace(array("[]", "[", "]"), array("", "_", ""), $input_name) : $input_id;
+
+		$attributes = array_merge(array(
+			"name" => $input_name,
+			"id" => $input_id
+		), $attributes);
+
+		$attributes_str = "";
+		foreach ($attributes as $key => $value)
+			$attributes_str .= " {$key}='{$value}' ";
+
+		$ret = "<select{$attributes_str}>";
+
+		foreach($select_options as $option_label => $option_value)
+		{
+			$option_label = ($value_is_label && $option_value) ? lang($option_value) : $option_label;
+			// print($selected. ":" .$option_value . "<br />");
+			if(!is_array($selected_options))
+				$selected_options = array($selected_options);
+
+			foreach ($selected_options as $selected_value)
+			{
+				$selected = ($selected_value === $option_value) ? " selected='selected' " : "";
+				if($selected) continue;
+			}
+			$ret .= "<option value='{$option_value}'{$selected}>{$option_label}</option>";
+		}
+
+		$ret .= "</select>";
+		return $ret;
+	}
+
+
+	/**
+	 * Creates a checkbox w/ optional label
+	 *
+	 * @access public
+	 * @param string $input_name The name of the input eg: Lg_polls_ext[log_ip]
+	 * @param string $input_label The label for the input eg: Polls
+	 * @param boolean $checked Is the checkbox checked
+	 * @param array $options Optional arguments
+	 * @return string Checkbox html
+	 */
+ 	public function checkbox($input_name, $input_value, $checked, array $options = array())
+	{
+
+		$valid_options = array(
+			"input_id" => FALSE,
+			"generate_shadow" => FALSE,
+			"shadow_value" => FALSE,
+			"attributes" => array(),
+			"label" => FALSE
+		);
+
+		foreach ($valid_options as $option => $default_value)
+		{
+			$$option = (isset($options[$option])) ? $options[$option] : $default_value;
+		}
+
+		$input_id = ($input_id === FALSE) ? str_replace(array("[]", "[", "]"), array("", "_", ""), $input_name) : $input_id;
+
+		$checked = ($checked == TRUE) ? "checked='checked'" : "";
+
+		$attributes = array_merge(array(
+			"name" => $input_name,
+			"id" => $input_id,
+			"value" => $input_value,
+		), $attributes);
+
+		$attributes_str = "";
+		foreach ($attributes as $key => $value)
+		{
+			$attributes_str .= " {$key}='{$value}' ";
+		}
+
+		$ret = '<input type="checkbox" '. $attributes_str . $checked . ' />';
+
+		if($label !== FALSE)
+		{
+			$ret = '<label class="checkbox" for="'.$input_id.'">' . $ret . ' ' . lang($label) . '</label>';
+		}
+
+		if ($generate_shadow != FALSE)
+		{
+			$ret = '<input type="hidden" name="' . $input_name . '" value="'.$shadow_value.'" />' . $ret;
+		}
+
+		return $ret;
+	}
+
+	/**
+	 * Yes / No radio group
+	 *
+	 * @access public
+	 * @param string $input_name The name of the input eg: Lg_polls_ext[log_ip]
+	 * @param string $input_label The label for the input eg: Polls
+	 * @param boolean $checked_value TRUE for yes, FALSE for no
+	 * @param array $options Optional arguments
+	 * @return string Checkbox html
+	 */
+	public function yesNoRadioGroup($input_name, $checked_value, $options = array())
+	{
+		
+		$valid_options = array(
+			"attributes" => array(),
+			"input_id" => FALSE
+		);
+
+		foreach ($valid_options as $option => $default_value)
+		{
+			$$option = (isset($options[$option])) ? $options[$option] : $default_value;
+		}
+		
+		$input_id = ($input_id === FALSE) ? str_replace(array("[]", "[", "]"), array("", "_", ""), $input_name) : $input_id;
+		$attributes = array_merge(array(
+			"name" => $input_name
+		), $attributes);
+
+		$attributes_str = "";
+		foreach ($attributes as $key => $value)
+		{
+			$attributes_str .= " {$key}='{$value}' ";
+		}
+
+		$checked_str = ($checked_value == 1) ? " checked='checked' " : FALSE;
+		$ret = '<label for="'.$input_id.'_yes">';
+		$ret .= '<input type="radio" value="1" '.$checked_str.' id="'.$input_id.'_yes" '. $attributes_str . ' />';
+		$ret .= 'Yes </label>';
+
+		$checked_str = ($checked_value == 0) ? " checked='checked' " : FALSE;
+		$ret .= '<label for="'.$input_id.'_no">';
+		$ret .= '<input type="radio" value="0" '.$checked_str.' id="'.$input_id.'_no" '. $attributes_str . ' />';
+		$ret .= 'No </label>';
+		
+		return $ret;
+	}
+
 }
