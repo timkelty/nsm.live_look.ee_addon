@@ -406,6 +406,8 @@ class Nsm_live_look_ext
 		{
 			// get the settings from the session cache
 			$return_settings = $EE->session->cache[$this->addon_id][SITE_ID]['settings'];
+			log_message('info', __CLASS__ . " : " . __METHOD__ . ' getting settings from cache');
+			
 		}
 		else
 		{
@@ -421,12 +423,14 @@ class Nsm_live_look_ext
 			{
 				$settings = json_decode($settings_query->row()->settings, TRUE);
 				$this->_saveSettingsToSession($settings);
+				log_message('info', __CLASS__ . " : " . __METHOD__ . ' getting settings from session');
 			}
 			// no settings for the site
 			else
 			{
 				$settings = $this->_buildDefaultSiteSettings(SITE_ID);
 				$this->_saveSettings($settings);
+				log_message('info', __CLASS__ . " : " . __METHOD__ . ' creating new site settings');
 			}
 			
 		}
